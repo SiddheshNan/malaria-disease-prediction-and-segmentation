@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.11/tailwind.min.css"
+            integrity="sha512-x2cJ7AaAfneohxPgwnLNuG8QoQIarTu+GKmfKwVNJyGohutC647m9EUmB9bz/HBWzyjdz32WMkIx74eXHIsvhA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+
+</head>
+<body class="mx-auto p-16 pt-4 text-black">
+<div class="w-full">
+    <button
+            onclick="getReq('browseimg')"
+            class="relative bg-gray-300 text-black py-2 px-8 rounded text-md"
+
+    >
+        Browse Image
+    </button>
+    <br/><br/>
+
+    <button
+            onclick="getReq('hsv2gray')"
+            class="relative bg-gray-300 text-black py-2 px-8 rounded text-md"
+    >
+        HSV 2 GRAY
+    </button>
+    <br/><br/>
+
+    <button
+            onclick="getReq('clahe')"
+            class="mx-auto relative bg-gray-300 text-black py-2 px-8 rounded text-md"
+    >
+        CLAHE
+    </button>
+    <br/><br/>
+
+    <button
+            onclick="getReq('bilateral')"
+            class="relative bg-gray-300 text-black py-2 px-8 rounded text-md"
+    >
+        Bilateral Filter
+    </button>
+    <br/><br/>
+
+    <button
+            onclick="getReq('inrange')"
+            class="relative bg-gray-300 text-black py-2 px-8 rounded text-md"
+    >
+        Inrange Filter
+    </button>
+    <br/><br/>
+
+    <button
+            onclick="getReq('superpixelsegment')"
+            class="relative bg-gray-300 text-black py-2 px-8 rounded text-md"
+    >
+        Superpixel Segmentation <br/>& Feature extract
+    </button>
+    <br/><br/>
+
+    <button
+            onclick="getReq('clasfiction')"
+            class="relative bg-gray-300 text-black py-2 px-8 rounded text-md"
+    >
+        Clasification
+    </button>
+    <br/><br/>
+
+
+    <div id="output" class="border p-6 w-1/4 bg-gray-200">
+        ------OUTPUT GOES HERE-------
+    </div>
+</div>
+
+<script>
+    const out_ele = document.getElementById("output");
+    const getReq = path => {
+        fetch("http://localhost:5555/" + path)
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                out_ele.innerHTML += "<br/>" + data;
+            })
+        // .catch((e) => alert("somthing went wrong!"));
+    };
+</script>
+</body>
+</html>
